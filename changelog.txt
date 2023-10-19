@@ -16,3 +16,9 @@ Date: 19.10.2023
   Fixed:
     - add IndustrialRevolution3 in optional dependency
 ------------------------------------------------------------------------------------------------
+Version: 1.0.3
+Date: 19.10.2023
+  Fixed:
+    - add IndustrialRevolution3LoadersStacking and IndustrialRevolution3SpaceMining in optional dependencies
+------------------------------------------------------------------------------------------------
+
