@@ -9,5 +9,10 @@ Date: 19.10.2023
 Version: 1.0.1
 Date: 19.10.2023
   Fixed:
-    - fix: crash because duplicate IndustrialRevolution3 locale key
+    - crash because duplicate IndustrialRevolution3 locale key
+------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 19.10.2023
+  Fixed:
+    - add IndustrialRevolution3 in optional dependency
 ------------------------------------------------------------------------------------------------
