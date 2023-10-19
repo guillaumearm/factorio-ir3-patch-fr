@@ -6,6 +6,6 @@
     "contact": "",
     "homepage": "https://github.com/guillaumearm/factorio-ir3-patch-fr",
     "factorio_version": "1.1",
-    "dependencies": ["base >= 1.1"],
+    "dependencies": ["base >= 1.1", "~IndustrialRevolution3 >= 3.1.0"],
     "description": "Traduction française du mod Industrial Revolution 3 (+ addons)\n\nList of translated IR3 addons:\n- Industrial Revolution 3: Powered Loaders & Ingot Stacking\n- Industrial Revolution 3: Deep Space Mining\n\n"
 }
