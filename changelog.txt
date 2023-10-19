@@ -2,5 +2,7 @@
 Version: 0.17.28
 Date: 19.10.2023
   Added:
-    -
+    - French translations for Industrial Revolution 3
+    - French translations for Industrial Revolution 3: Deep Space Mining
+    - French translations for Industrial Revolution 3: Powered Loaders & Ingot Stacking
 ------------------------------------------------------------------------------------------------
