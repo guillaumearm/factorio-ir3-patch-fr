@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.0.1
+VERSION=$(cat info.json | jq -r .version || exit)
 BUILD_FOLDER=build
 MOD_DIRNAME=IR3_PatchFR_$VERSION
 MOD_ZIPNAME=$MOD_DIRNAME.zip
