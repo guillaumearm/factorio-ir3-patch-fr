@@ -1,31 +1,3 @@
-------------------------------------------------------------------------------------------------
-Version: 1.0.0
-Date: 19.10.2023
-  Added:
-    - French translations for Industrial Revolution 3
-    - French translations for Industrial Revolution 3: Deep Space Mining
-    - French translations for Industrial Revolution 3: Powered Loaders & Ingot Stacking
-------------------------------------------------------------------------------------------------
-Version: 1.0.1
-Date: 19.10.2023
-  Fixed:
-    - crash because of duplicate "IndustrialRevolution3" locale key
-------------------------------------------------------------------------------------------------
-Version: 1.0.2
-Date: 19.10.2023
-  Fixed:
-    - add IndustrialRevolution3 in optional dependency
-------------------------------------------------------------------------------------------------
-Version: 1.0.3
-Date: 19.10.2023
-  Fixed:
-    - add IndustrialRevolution3LoadersStacking and IndustrialRevolution3SpaceMining in optional dependencies
-------------------------------------------------------------------------------------------------
-Version: 1.0.4
-Date: 20.10.2023
-  Fixed:
-    - crash because of duplicate "mod-setting-description" locale key
-------------------------------------------------------------------------------------------------
 Version: 1.0.5
 Date: 20.10.2023
   Fixed:
@@ -36,4 +8,31 @@ Date: 20.10.2023
     - replace "Foresterie" by "Sylviculture"
     - fixed some incomplete entity descriptions
     - translate scatterbot
-------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+Version: 1.0.4
+Date: 20.10.2023
+  Fixed:
+    - crash because of duplicate "mod-setting-description" locale key
+--------------------------------------------------------------------------------------------------------------
+Version: 1.0.3
+Date: 19.10.2023
+  Fixed:
+    - add IndustrialRevolution3LoadersStacking and IndustrialRevolution3SpaceMining in optional dependencies
+--------------------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 19.10.2023
+  Fixed:
+    - add IndustrialRevolution3 in optional dependency
+--------------------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 19.10.2023
+  Fixed:
+    - crash because of duplicate "IndustrialRevolution3" locale key
+--------------------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 19.10.2023
+  Added:
+    - French translations for Industrial Revolution 3
+    - French translations for Industrial Revolution 3: Deep Space Mining
+    - French translations for Industrial Revolution 3: Powered Loaders & Ingot Stacking
+--------------------------------------------------------------------------------------------------------------
