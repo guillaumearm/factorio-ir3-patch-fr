@@ -6,7 +6,23 @@
         [
             "@semantic-release/commit-analyzer",
             {
-                "config": "conventional-changelog-conventionalcommits-factorio"
+                "config": "conventional-changelog-conventionalcommits-factorio",
+                "releaseRules": [
+                    { "type": "feat", "release": "minor" },
+                    { "type": "feature", "release": "minor" },
+                    { "type": "compat", "release": "minor" },
+                    { "type": "compatibility", "release": "minor" },
+                    { "type": "balance", "release": "minor" },
+                    { "type": "graphics", "release": "minor" },
+                    { "type": "sound", "release": "minor" },
+                    { "type": "gui", "release": "minor" },
+                    { "type": "fix", "release": "patch" },
+                    { "type": "info", "release": "patch" },
+                    { "type": "locale", "release": "patch" },
+                    { "type": "translate", "release": "minor" },
+                    { "type": "control", "release": "minor" },
+                    { "type": "other", "release": "patch" }
+                ]
             }
         ],
         [
