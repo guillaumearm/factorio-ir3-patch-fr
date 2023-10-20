@@ -26,3 +26,14 @@ Date: 20.10.2023
   Fixed:
     - crash because of duplicate "mod-setting-description" locale key
 ------------------------------------------------------------------------------------------------
+Version: 1.0.5
+Date: 20.10.2023
+  Fixed:
+    - bad translations scraps and canisters
+    - copper-engine-unit translation
+    - copper-magazine and chromium-magazine translations
+    - bronze-beam and copper-beam translations
+    - replace "Foresterie" by "Sylviculture"
+    - fixed some incomplete entity descriptions
+    - translate scatterbot
+------------------------------------------------------------------------------------------------
