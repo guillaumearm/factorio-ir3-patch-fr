@@ -24,6 +24,7 @@ jobs:
           @semantic-release/git@^10.0.1 semantic-release-factorio@^1.5.0 \
           conventional-changelog-conventionalcommits-factorio@^1.0.3
       - name: Run tests
+        run: |
           ./test.sh
       - name: Run semantic-release
         run: npx semantic-release
