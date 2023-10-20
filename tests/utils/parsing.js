@@ -1,50 +1,96 @@
 const isValidSectionName = (line) =>
   Boolean(line.startsWith("[") && line.endsWith("]"));
 
-const parseNextSection = ([sectionName, ...restLines]) => {
-  // const lines = restLines.concat(); // clone the array ?
+const parseLocaleConfigLine = (line) => {
+  const splittedLine = line.split("=");
 
-  if (!isValidSectionName(sectionName)) {
-    throw new Error(`Cannot parse section name: ${sectionName}`);
+  if (splittedLine.length >= 2) {
+    const key = splittedLine[0];
+    const value = splittedLine.slice(1).join("=");
+    return { key, value };
   }
 
-  const parsedLocales = {};
+  return null;
+};
 
-  restLines.forEach((line) => {
-    // TODO: parseSectionName
-    if (isValidSectionName(line)) {
-      // TODO stop loop ?
-      return;
+const parseSections = (state, line) => {
+  if (isValidSectionName(line)) {
+    if (state.sections[line]) {
+      return {
+        ...state,
+        errors: state.errors.concat(`Duplicate section "${line}" found`),
+      };
+    }
+    return {
+      ...state,
+      currentSection: line,
+      sections: { ...state.sections, [line]: {} },
+    };
+  }
+
+  const parsedLine = parseLocaleConfigLine(line);
+
+  if (!parsedLine) {
+    // ignore empty lines
+    if (line.trim().length === 0) {
+      return state;
     }
 
-    // TODO: parseLocalKeyValue
-    const splittedLine = line.split("=");
-    if (splittedLine.length >= 2) {
-      const k = splittedLine[0];
-      const v = splittedLine[1];
+    return {
+      ...state,
+      errors: state.errors.concat(`Cannot parse line "${line}"`),
+    };
+  }
 
-      // if (parsedLocales[k]) {
-      //   throw new Error(
-      //     `Dupliate key "${k}" found on section "${sectionName}"`
-      //   );
-      // }
+  if (!state.currentSection) {
+    return {
+      ...state,
+      errors: state.errors.concat(
+        `Cannot parse line "${line}" because no section is defined`
+      ),
+    };
+  }
 
-      parsedLocales[k] = v;
-    }
-  });
+  if (!state.sections[state.currentSection]) {
+    return {
+      ...state,
+      errors: state.errors.concat(
+        `Cannot parse line "${line}" because section "${state.currentSection}" is not defined`
+      ),
+    };
+  }
 
-  const parsedSections = {
-    [sectionName]: parsedLocales,
+  if (state.sections[state.currentSection][parsedLine.key]) {
+    return {
+      ...state,
+      errors: state.errors.concat(
+        `Duplicate key "${parsedLine.key}" found on section "${state.currentSection}"`
+      ),
+    };
+  }
+
+  return {
+    ...state,
+    sections: {
+      ...state.sections,
+      [state.currentSection]: {
+        ...state.sections[state.currentSection],
+        [parsedLine.key]: parsedLine.value,
+      },
+    },
   };
+};
 
-  return [parsedSections];
-  // const content = fs.readFileSync(filePath, "utf8");
+const INITIAL_STATE = {
+  currentSection: null,
+  sections: {},
+  errors: [],
+};
 
-  // const lines = splitLines(content)
-
-  // const currentSection = null;
+const parseAllSections = (lines) => {
+  return lines.reduce(parseSections, INITIAL_STATE);
 };
 
 module.exports = {
-  parseNextSection,
+  parseAllSections,
 };
