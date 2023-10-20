@@ -37,8 +37,6 @@ const parseNextSection = ([sectionName, ...restLines]) => {
     [sectionName]: parsedLocales,
   };
 
-  throw new Error("Temporary Failed!");
-
   return [parsedSections];
   // const content = fs.readFileSync(filePath, "utf8");
 
