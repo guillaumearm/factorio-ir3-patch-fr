@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2023-10-20
+  Info:
+    - trigger the ci/cd
+  Translation:
+    - Industrial Revolution 3
+  Changes:
+    - trigger the ci/cd
+  Features:
+    - trigger ci/cd (semantic-release is driving me crazy)
