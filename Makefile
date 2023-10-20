@@ -1,9 +1,12 @@
 BASH=/bin/bash
 
 all: 
-	${BASH} package-zip.sh
+	@${BASH} package-zip.sh
 
 test:
-	${BASH} test.sh
+	@${BASH} test.sh
 
-.PHONY: all test
+clean:
+	@${BASH} cleanup.sh
+
+.PHONY: all test clean
