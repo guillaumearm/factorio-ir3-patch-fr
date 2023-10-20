@@ -1,3 +1,3 @@
 #!/bin/bash
 
-node tests/check_locales.js ./locale/fr/*.cfg && echo "> Tests: OK"
+node tests/check_locales.js ./locale/fr/*.cfg && echo "> Locales Tests: OK"

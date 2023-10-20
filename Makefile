@@ -1,6 +1,6 @@
 BASH=/bin/bash
 
-all: 
+all: clean test
 	@${BASH} package-zip.sh
 
 test:
