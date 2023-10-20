@@ -1,76 +1,12 @@
 const fs = require("fs");
 
-const { splitLines } = require("./utils/splitLines");
-const { parseAllSections } = require("./utils/parsing");
-
-const simpleSectionMerge = (targetSection, sourceSection) => {
-  if (!targetSection) {
-    return { mergedSection: sourceSection, errors: [] };
-  }
-
-  if (!sourceSection) {
-    return { mergedSection: targetSection, errors: [] };
-  }
-
-  return Object.keys(sourceSection).reduce(
-    (state, localeKey) => {
-      const localeValue = sourceSection[localeKey];
-      const targetLocaleValue = targetSection[localeKey];
-
-      if (targetLocaleValue) {
-        return {
-          ...state,
-          errors: state.errors.concat(
-            `Duplicate key "${localeKey}" found on section`
-          ),
-        };
-      }
-
-      return {
-        ...state,
-        mergedSection: { ...state.mergedSection, [localeKey]: localeValue },
-      };
-    },
-    { mergedSection: targetSection, errors: [] }
-  );
-};
-
-const mergeSections = (state, sections) => {
-  return Object.keys(sections).reduce((state, sectionName) => {
-    const section = sections[sectionName];
-    const currentSection = state.sections[sectionName];
-
-    const { mergedSection, errors } = simpleSectionMerge(
-      currentSection,
-      section
-    );
-
-    if (errors.length) {
-      return { ...state, errors: state.errors.concat(errors) };
-    }
-
-    return {
-      ...state,
-      sections: {
-        ...state.sections,
-        [sectionName]: mergedSection,
-      },
-    };
-  }, state);
-};
+const { parseFileContent } = require("./parsing/parseFileContent");
 
 const checkFiles = (allFilePaths) => {
   return allFilePaths.reduce(
     (state, filePath) => {
       const content = fs.readFileSync(filePath, "utf8");
-      const lines = splitLines(content);
-      const { sections, errors } = parseAllSections(lines);
-
-      if (errors.length) {
-        return { ...state, errors: state.errors.concat(errors) };
-      }
-
-      return mergeSections(state, sections);
+      return parseFileContent(state, content);
     },
     { sections: {}, errors: [] }
   );
