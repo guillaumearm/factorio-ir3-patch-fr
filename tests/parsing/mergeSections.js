@@ -30,8 +30,9 @@ const simpleSectionMerge = (targetSection, sourceSection) => {
     { mergedSection: targetSection, errors: [] }
   );
 };
+
 /** Merge sections from `sections` into `state` */
-const mergeSections = (state, sections) => {
+export const mergeSections = (state, sections) => {
   return Object.keys(sections).reduce((state, sectionName) => {
     const section = sections[sectionName];
     const currentSection = state.sections[sectionName];
@@ -54,4 +55,3 @@ const mergeSections = (state, sections) => {
     };
   }, state);
 };
-exports.mergeSections = mergeSections;

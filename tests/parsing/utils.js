@@ -1,4 +1,4 @@
-function splitLines(string, options = {}) {
+export function splitLines(string, options = {}) {
   const { preserveNewlines = false } = options;
 
   if (typeof string !== "string") {
@@ -20,5 +20,3 @@ function splitLines(string, options = {}) {
 
   return lines;
 }
-
-module.exports = { splitLines };

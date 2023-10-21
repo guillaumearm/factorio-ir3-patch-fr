@@ -1,6 +1,7 @@
-const fs = require("fs");
+import chalk from "chalk";
+import * as fs from "fs";
 
-const { parseFileContent } = require("./parsing/parseFileContent");
+import { parseFileContent } from "./parsing/parseFileContent.js";
 
 const checkFiles = (allFilePaths) => {
   return allFilePaths.reduce(
@@ -92,7 +93,7 @@ const verifyMissingSections = (frResult, enResult) => {
   }
 };
 
-const main = (frDirectory, enDirectory) => {
+const main = async (frDirectory, enDirectory) => {
   if (!frDirectory || !enDirectory) {
     console.log("usage: node check_locales.js <fr_directory> <en_directory>");
     return;
@@ -114,4 +115,7 @@ const main = (frDirectory, enDirectory) => {
 };
 
 const args = process.argv.slice(2);
-main(...args);
+main(...args).catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});

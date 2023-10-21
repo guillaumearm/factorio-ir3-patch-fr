@@ -87,10 +87,6 @@ const INITIAL_STATE = {
   errors: [],
 };
 
-const parseAllSections = (lines) => {
+export const parseAllSections = (lines) => {
   return lines.reduce(parseSections, INITIAL_STATE);
-};
-
-module.exports = {
-  parseAllSections,
 };

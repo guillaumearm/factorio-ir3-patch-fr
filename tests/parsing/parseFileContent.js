@@ -1,9 +1,9 @@
-const { splitLines } = require("./utils");
-const { parseAllSections } = require("./parseAllSections");
-const { mergeSections } = require("./mergeSections");
+import { splitLines } from "./utils.js";
+import { parseAllSections } from "./parseAllSections.js";
+import { mergeSections } from "./mergeSections.js";
 
 /** Parse `content` and merge it into `state` */
-const parseFileContent = (state, content) => {
+export const parseFileContent = (state, content) => {
   const lines = splitLines(content);
   const { sections, errors } = parseAllSections(lines);
 
@@ -12,8 +12,4 @@ const parseFileContent = (state, content) => {
   }
 
   return mergeSections(state, sections);
-};
-
-module.exports = {
-  parseFileContent,
 };
