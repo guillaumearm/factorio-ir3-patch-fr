@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.0
+Date: 2023-10-21
+  Translation:
+    - replace "Bidon" by "Cellule"
+    - replace "Derrick" by "Chevalet de pompage"
+    - replace "Pellets" and "Pastilles" by "Granulés"
+    - replace "Petit réservoir tampon" by "Petit réservoir"
+    - replace "Pompe offshore en cuivre" by "Pompe côtière en cuivre"
+    - replace "Rouleau lourd" by "Rouleau compresseur"
+    - replace "Unité" by "Élément"
+---------------------------------------------------------------------------------------------------
 Version: 1.1.1
 Date: 2023-10-20
   Info:
