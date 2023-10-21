@@ -65,7 +65,9 @@ const verifyUnknownLocaleKeys = (frResult, enResult) => {
   const diffFr = diffLocaleKeysFromResult(frResult, enResult);
 
   if (diffFr.length > 0) {
-    throw new Error('Unknown keys in "fr" language:\n' + diffFr.join("\n"));
+    throw new Error(
+      'Unknown keys in "fr" language:\n' + chalk.bold.blue(diffFr.join("\n"))
+    );
   }
 };
 
@@ -73,7 +75,9 @@ const verifyMissingLocaleKeys = (frResult, enResult) => {
   const diffEn = diffLocaleKeysFromResult(enResult, frResult);
 
   if (diffEn.length > 0) {
-    throw new Error('Missing keys in "fr" language:\n' + diffEn.join("\n"));
+    throw new Error(
+      'Missing keys in "fr" language:\n' + chalk.bold.blue(diffEn.join("\n"))
+    );
   }
 };
 
@@ -81,7 +85,10 @@ const verifyUnknownSections = (frResult, enResult) => {
   const diffFr = diffSectionsFromResult(frResult, enResult);
 
   if (diffFr.length > 0) {
-    throw new Error('Unknown sections in "fr" language:\n' + diffFr.join("\n"));
+    throw new Error(
+      'Unknown sections in "fr" language:\n' +
+        chalk.bold.green(diffFr.join("\n"))
+    );
   }
 };
 
@@ -89,7 +96,10 @@ const verifyMissingSections = (frResult, enResult) => {
   const diffEn = diffSectionsFromResult(enResult, frResult);
 
   if (diffEn.length > 0) {
-    throw new Error('Missing sections in "fr" language:\n' + diffEn.join("\n"));
+    throw new Error(
+      'Missing sections in "fr" language:\n' +
+        chalk.bold.green(diffEn.join("\n"))
+    );
   }
 };
 
@@ -116,6 +126,6 @@ const main = async (frDirectory, enDirectory) => {
 
 const args = process.argv.slice(2);
 main(...args).catch((err) => {
-  console.error(err.message);
+  console.error(chalk.red(err.message));
   process.exit(1);
 });

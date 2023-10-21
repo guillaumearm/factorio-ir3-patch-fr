@@ -1,3 +1,5 @@
+import chalk from "chalk";
+
 const isValidSectionName = (line) =>
   Boolean(line.startsWith("[") && line.endsWith("]"));
 
@@ -18,7 +20,9 @@ const parseSections = (state, line) => {
     if (state.sections[line]) {
       return {
         ...state,
-        errors: state.errors.concat(`Duplicate section "${line}" found`),
+        errors: state.errors.concat(
+          `Duplicate section "${chalk.bold.green(line)}" found`
+        ),
       };
     }
     return {
@@ -38,7 +42,9 @@ const parseSections = (state, line) => {
 
     return {
       ...state,
-      errors: state.errors.concat(`Cannot parse line "${line}"`),
+      errors: state.errors.concat(
+        `Cannot parse line "${chalk.bold.white(line)}"`
+      ),
     };
   }
 
@@ -46,7 +52,9 @@ const parseSections = (state, line) => {
     return {
       ...state,
       errors: state.errors.concat(
-        `Cannot parse line "${line}" because no section is defined`
+        `Cannot parse line "${chalk.bold.white(
+          line
+        )}" because no section is defined`
       ),
     };
   }
@@ -55,7 +63,11 @@ const parseSections = (state, line) => {
     return {
       ...state,
       errors: state.errors.concat(
-        `Cannot parse line "${line}" because section "${state.currentSection}" is not defined`
+        `Cannot parse line "${chalk.bold.white(
+          line
+        )}" because section "${chalk.bold.green(
+          state.currentSection
+        )}" is not defined`
       ),
     };
   }
@@ -64,7 +76,9 @@ const parseSections = (state, line) => {
     return {
       ...state,
       errors: state.errors.concat(
-        `Duplicate key "${parsedLine.key}" found on section "${state.currentSection}"`
+        `Duplicate key "${chalk.bold.blue(
+          parsedLine.key
+        )}" found on section "${chalk.bold.green(state.currentSection)}"`
       ),
     };
   }

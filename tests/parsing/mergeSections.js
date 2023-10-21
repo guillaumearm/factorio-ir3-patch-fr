@@ -1,3 +1,5 @@
+import chalk from "chalk";
+
 /** Merge `sourceSection` into `targetSection` */
 const simpleSectionMerge = (targetSection, sourceSection) => {
   if (!targetSection) {
@@ -17,7 +19,7 @@ const simpleSectionMerge = (targetSection, sourceSection) => {
         return {
           ...state,
           errors: state.errors.concat(
-            `Duplicate key "${localeKey}" found on section`
+            `Duplicate key "${chalk.bold.blue(localeKey)}" found on section`
           ),
         };
       }
