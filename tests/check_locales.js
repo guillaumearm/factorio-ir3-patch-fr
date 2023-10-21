@@ -36,6 +36,62 @@ const getFilePaths = (directory) =>
     .filter((filePath) => filePath && filePath.endsWith(".cfg"))
     .map((filePath) => `${directory}/${filePath}`);
 
+const flattenLocaleKeys = (sections) => {
+  return Object.keys(sections).reduce((accKeys, sectionName) => {
+    const section = sections[sectionName];
+
+    const keys = Object.keys(section).map((localeKey) => {
+      return `${sectionName}.${localeKey}`;
+    });
+
+    return [...accKeys, ...keys];
+  }, []);
+};
+
+const diffLocaleKeysFromResult = (resultA, resultB) => {
+  const flattenedResultA = flattenLocaleKeys(resultA.sections);
+  const flattenedResultB = flattenLocaleKeys(resultB.sections);
+  return flattenedResultA.filter((k) => !flattenedResultB.includes(k));
+};
+
+const diffSectionsFromResult = (resultA, resultB) => {
+  const sectionsA = Object.keys(resultA.sections);
+  const sectionsB = Object.keys(resultB.sections);
+  return sectionsA.filter((k) => !sectionsB.includes(k));
+};
+
+const verifyUnknownLocaleKeys = (frResult, enResult) => {
+  const diffFr = diffLocaleKeysFromResult(frResult, enResult);
+
+  if (diffFr.length > 0) {
+    throw new Error('Unknown keys in "fr" language:\n' + diffFr.join("\n"));
+  }
+};
+
+const verifyMissingLocaleKeys = (frResult, enResult) => {
+  const diffEn = diffLocaleKeysFromResult(enResult, frResult);
+
+  if (diffEn.length > 0) {
+    throw new Error('Missing keys in "fr" language:\n' + diffEn.join("\n"));
+  }
+};
+
+const verifyUnknownSections = (frResult, enResult) => {
+  const diffFr = diffSectionsFromResult(frResult, enResult);
+
+  if (diffFr.length > 0) {
+    throw new Error('Unknown sections in "fr" language:\n' + diffFr.join("\n"));
+  }
+};
+
+const verifyMissingSections = (frResult, enResult) => {
+  const diffEn = diffSectionsFromResult(enResult, frResult);
+
+  if (diffEn.length > 0) {
+    throw new Error('Missing sections in "fr" language:\n' + diffEn.join("\n"));
+  }
+};
+
 const main = (frDirectory, enDirectory) => {
   if (!frDirectory || !enDirectory) {
     console.log("usage: node check_locales.js <fr_directory> <en_directory>");
@@ -50,15 +106,11 @@ const main = (frDirectory, enDirectory) => {
   const enResult = checkFiles(allEnFilePaths);
   printReport(enResult, "> 🇬🇧  ");
 
-  if (countSections(frResult.sections) !== countSections(enResult.sections)) {
-    throw new Error("Sections count does not match between languages");
-  }
+  verifyUnknownSections(frResult, enResult);
+  verifyMissingSections(frResult, enResult);
 
-  if (
-    countLocaleKeys(frResult.sections) !== countLocaleKeys(enResult.sections)
-  ) {
-    throw new Error("Locale keys count does not match between languages");
-  }
+  verifyUnknownLocaleKeys(frResult, enResult);
+  verifyMissingLocaleKeys(frResult, enResult);
 };
 
 const args = process.argv.slice(2);
